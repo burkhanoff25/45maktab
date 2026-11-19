@@ -1,3 +1,4 @@
+require('./env'); // Load .env automatically
 const http = require('node:http');
 const https = require('node:https');
 const fs = require('node:fs');
@@ -11,8 +12,8 @@ const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 const UPLOADS_DIR = path.join(PUBLIC_DIR, 'uploads');
 
 // Telegram Bot Configuration
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "9217947885:AAGWbMcZlyDEwP7DJ8UGqstO_XDM5eOWYqc";
-const TELEGRAM_ADMINS = (process.env.TELEGRAM_ADMINS ? process.env.TELEGRAM_ADMINS.split(',') : ["76813895", "1426434654", "7918236863"]).map(s => s.trim());
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "";
+const TELEGRAM_ADMINS = (process.env.TELEGRAM_ADMINS ? process.env.TELEGRAM_ADMINS.split(',') : []).map(s => s.trim()).filter(Boolean);
 
 function escapeHtml(str) {
   if (!str) return '';

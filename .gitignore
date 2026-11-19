@@ -3,3 +3,6 @@ node_modules/
 *.zip
 data/*.db-shm
 data/*.db-wal
+.env
+.env.local
+
