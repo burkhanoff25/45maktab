@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>45-sonli umumiy o‘rta ta’lim maktabi | Rasmiy veb-sayt</title>
+  <meta name="description" content="Namangan viloyati Yangiqo‘rg‘on tumani 45-sonli umumiy o‘rta ta’lim maktabining rasmiy veb-sayti. Maktab yangiliklari, rahbariyat, e’lonlar va fotogalereya.">
+  <meta name="keywords" content="45-maktab, Yangiqo‘rg‘on, Namangan, maktab veb-sayti, ta’lim, maktab hayoti">
+  <meta name="author" content="45-sonli maktab">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="45-sonli umumiy o‘rta ta’lim maktabi rasmiy portali">
+  <meta property="og:description" content="Kelajak sari bilim, tarbiya va yuksak marralar bilan. Namangan viloyati, Yangiqo‘rg‘on tumani.">
+  <meta property="og:image" content="/assets/school-front-1.jpg">
+
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-meta">
+        <span class="badge-flag">🇺🇿</span>
+        <span id="topRegion">Namangan viloyati, Yangiqo‘rg‘on tumani</span>
+      </div>
+      <div class="top-contacts">
+        <a href="tel:+998945097171" class="top-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          +998 94 509 71 71
+        </a>
+        <a href="mailto:marifatlimaktab@umail.uz" class="top-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          marifatlimaktab@umail.uz
+        </a>
+        <a href="https://t.me/+KQm8vZ8efHo1NWEy" target="_blank" rel="noopener" class="top-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg>
+          Telegram
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header & Nav -->
+  <header class="main-header" id="header">
+    <div class="container header-container">
+      <a href="#home" class="brand-group">
+        <img src="/assets/logo.png" alt="45-maktab ramzi" class="school-logo">
+        <div class="brand-text">
+          <span class="brand-title">45-SONLI MAKTAB</span>
+          <span class="brand-sub">Umumiy o‘rta ta’lim maktabi rasmiy portali</span>
+        </div>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Menyu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-item active" data-uz="Bosh sahifa" data-ru="Главная">Bosh sahifa</a>
+        <a href="#about" class="nav-item" data-uz="Maktab haqida" data-ru="О школе">Maktab haqida</a>
+        <a href="#leaders" class="nav-item" data-uz="Rahbariyat" data-ru="Руководство">Rahbariyat</a>
+        <a href="#announcements" class="nav-item" data-uz="E’lonlar" data-ru="Объявления">E’lonlar</a>
+        <a href="#news" class="nav-item" data-uz="Yangiliklar" data-ru="Новости">Yangiliklar</a>
+        <a href="#gallery" class="nav-item" data-uz="Fotogalereya" data-ru="Фотогалерея">Fotogalereya</a>
+        <a href="#documents" class="nav-item" data-uz="Hujjatlar" data-ru="Документы">Hujjatlar</a>
+        <a href="#contact" class="nav-item" data-uz="Bog‘lanish" data-ru="Контакты">Bog‘lanish</a>
+        
+        <div class="nav-actions">
+          <button class="lang-switcher" id="langSwitchBtn" onclick="toggleLanguage()">
+            <span class="lang-flag">🌐</span>
+            <span id="currentLangText">UZ | RU</span>
+          </button>
+          <a href="/admin" class="btn-admin-nav" title="Admin panelga kirish">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span data-uz="Admin" data-ru="Админ">Admin</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="home">
+    <div class="hero-slider">
+      <div class="hero-slide active" style="background-image: linear-gradient(rgba(10, 40, 48, 0.75), rgba(10, 40, 48, 0.85)), url('/assets/school-front-1.jpg');">
+        <div class="container hero-content">
+          <div class="hero-badge" data-uz="Zamonaviy ta’lim va intellektual salohiyat" data-ru="Современное образование и интеллектуальный потенциал">
+            🎓 Zamonaviy ta’lim va intellektual salohiyat
+          </div>
+          <h1 class="hero-title" id="heroTitle">45-maktab — yuksak bilim va mustahkam tarbiya maskani</h1>
+          <p class="hero-description" id="heroDesc">Har bir o‘quvchining qobiliyati va orzularini yuzaga chiqaruvchi mustahkam ta’lim muhiti. Kelajak yetakchilarini birgalikda tarbiyalaymiz.</p>
+          <div class="hero-buttons">
+            <a href="#about" class="btn btn-primary" id="heroBtn1">
+              <span data-uz="Maktab bilan tanishing" data-ru="О нашей школе">Maktab bilan tanishing</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#contact" class="btn btn-outline" id="heroBtn2">
+              <span data-uz="Murojaat yo‘llash" data-ru="Отправить обращение">Murojaat yo‘llash</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Feature Cards -->
+  <section class="features-bar">
+    <div class="container">
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <div class="feature-info">
+            <h4 data-uz="Chuqurlashtirilgan ta’lim" data-ru="Углубленное образование">Chuqurlashtirilgan ta’lim</h4>
+            <p data-uz="Rus tilida olib boriladigan yuqori sifatli darslar" data-ru="Качественное обучение на русском языке">Rus tilida olib boriladigan yuqori sifatli darslar</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-info">
+            <h4 data-uz="Fan to‘garaklari" data-ru="Предметные кружки">Fan to‘garaklari</h4>
+            <p data-uz="Olimpiada, IT va ijodiy yo‘nalishlardagi faoliyatlar" data-ru="Олимпиады, IT и творческие направления">Olimpiada, IT va ijodiy yo‘nalishlardagi faoliyatlar</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <div class="feature-info">
+            <h4 data-uz="Xavfsiz va qulay maskan" data-ru="Безопасная и уютная среда">Xavfsiz va qulay maskan</h4>
+            <p data-uz="Zamonaviy jihozlangan sinfxonalar va sport zali" data-ru="Современные учебные классы и спортивный зал">Zamonaviy jihozlangan sinfxonalar va sport zali</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- School Stats -->
+  <section class="section-stats">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat-box">
+          <span class="stat-number">1 056</span>
+          <span class="stat-label" data-uz="Jami o‘quvchilar soni" data-ru="Всего учащихся">Jami o‘quvchilar soni</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">438</span>
+          <span class="stat-label" data-uz="Qiz bolalar" data-ru="Девочек">Qiz bolalar</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">618</span>
+          <span class="stat-label" data-uz="O‘g‘il bolalar" data-ru="Мальчиков">O‘g‘il bolalar</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">49</span>
+          <span class="stat-label" data-uz="Pedagog mutaxassislar" data-ru="Педагогов и учителей">Pedagog mutaxassislar</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Urgent Announcements Banner -->
+  <section class="section-announcements" id="announcements">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-tag" data-uz="E’LONLAR" data-ru="ОБЪЯВЛЕНИЯ">E’LONLAR</span>
+          <h2 class="section-title" data-uz="Muhim e’lonlar va xabarnomalar" data-ru="Важные объявления и уведомления">Muhim e’lonlar va xabarnomalar</h2>
+        </div>
+      </div>
+      <div class="announcements-container" id="announcementsList">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section-about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <span class="section-tag" data-uz="MAKTAB HAQIDA" data-ru="О ШКОЛЕ">MAKTAB HAQIDA</span>
+          <h2 class="section-title" id="aboutHeading">45-sonli umumiy o‘rta ta’lim maktabi</h2>
+          <div class="rich-text" id="aboutTextContent">
+            <p>Namangan viloyati Yangiqo‘rg‘on tumanidagi 45-sonli umumiy o‘rta ta’lim maktabi <strong>2019-yil 5-sentabrda</strong> o‘z faoliyatini boshlagan. Maktabda ta’lim sifatini yuksaltirish, yosh avlodni vatanparvarlik va yuksak axloqiy qadriyatlar ruhida tarbiyalash ustuvor maqsad etib belgilangan.</p>
+            <p>Ta’lim jarayonlari to‘liq <strong>rus tilida</strong> olib boriladi. Maktabda jami 1 056 nafar o‘quvchi ta’lim olib, ularga zamonaviy metodikalar asosida 49 nafar oliy toifali va tajribali pedagog xodimlar saboq bermoqda.</p>
+          </div>
+          
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong data-uz="2019-yildan buyon faoliyatda" data-ru="Работает с 2019 года">2019-yildan buyon faoliyatda</strong>
+                <p data-uz="Zamonaviy qulay bino va infratuzilma" data-ru="Современное комфортное здание и инфраструктура">Zamonaviy qulay bino va infratuzilma</p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong data-uz="Ixtisoslashtirilgan rus tili o‘quv dasturi" data-ru="Программа обучения на русском языке">Ixtisoslashtirilgan rus tili o‘quv dasturi</strong>
+                <p data-uz="Til va aniq fanlarni chuqur o‘zlashtirish imkoniyati" data-ru="Глубокое изучение языка и точных предметов">Til va aniq fanlarni chuqur o‘zlashtirish imkoniyati</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-gallery">
+          <div class="about-image-card main-img">
+            <img src="/assets/school-front-2.jpg" alt="Maktab binosi" class="zoomable">
+          </div>
+          <div class="about-sub-images">
+            <div class="about-image-card">
+              <img src="/assets/school-entry.jpg" alt="Maktab kirish darvozasi" class="zoomable">
+            </div>
+            <div class="about-image-card">
+              <img src="/assets/school-yard.jpg" alt="Maktab hovlisi" class="zoomable">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Section -->
+  <section class="section-leaders" id="leaders">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag" data-uz="RAHBARIYAT" data-ru="РУКОВОДСТВО">RAHBARIYAT</span>
+        <h2 class="section-title" data-uz="Maktab ma’muriyati" data-ru="Администрация школы">Maktab ma’muriyati</h2>
+        <p class="section-subtitle" data-uz="Maktab boshqaruvi va o‘quv-tarbiyaviy jarayon mutasaddilari" data-ru="Руководящий состав учебно-воспитательного процесса">Maktab boshqaruvi va o‘quv-tarbiyaviy jarayon mutasaddilari</p>
+      </div>
+
+      <div class="leaders-grid" id="leadersList">
+        <!-- Rendered via API / Static fallback -->
+      </div>
+    </div>
+  </section>
+
+  <!-- News Section -->
+  <section class="section-news" id="news">
+    <div class="container">
+      <div class="section-header between">
+        <div>
+          <span class="section-tag" data-uz="YANGILIKLAR" data-ru="НОВОСТИ">YANGILIKLAR</span>
+          <h2 class="section-title" data-uz="Maktab hayoti va yangiliklar" data-ru="Школьная жизнь и новости">Maktab hayoti va yangiliklar</h2>
+        </div>
+        <a href="#news" class="btn btn-secondary btn-sm" onclick="loadNews();" data-uz="Yangilash" data-ru="Обновить">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          <span data-uz="Yangilash" data-ru="Обновить">Yangilash</span>
+        </a>
+      </div>
+
+      <div class="news-grid" id="newsGrid">
+        <!-- Dynamically loaded from SQLite Backend API -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="section-gallery" id="gallery">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag" data-uz="FOTOGALEREYA" data-ru="ФОТОГАЛЕРЕЯ">FOTOGALEREYA</span>
+        <h2 class="section-title" data-uz="Maktabimiz suratlarda" data-ru="Школа в фотографиях">Maktabimiz suratlarda</h2>
+        <p class="section-subtitle" data-uz="Bino, tadbirlar, o‘qituvchilar va o‘quvchilar hayotidan lavhalar" data-ru="Кадры школьного здания, мероприятий, учителей и учеников">Bino, tadbirlar, o‘qituvchilar va o‘quvchilar hayotidan lavhalar</p>
+      </div>
+
+      <div class="gallery-grid" id="photoGallery">
+        <div class="gallery-item zoomable" data-title="Maktab binosi old ko‘rinishi">
+          <img src="/assets/school-front-1.jpg" alt="Maktab old ko‘rinishi">
+          <div class="gallery-caption"><span data-uz="Maktab binosi" data-ru="Здание школы">Maktab binosi</span></div>
+        </div>
+        <div class="gallery-item zoomable" data-title="Maktab hovlisi va sport maydoni">
+          <img src="/assets/school-yard.jpg" alt="Maktab hovlisi">
+          <div class="gallery-caption"><span data-uz="Maktab hovlisi" data-ru="Школьный двор">Maktab hovlisi</span></div>
+        </div>
+        <div class="gallery-item zoomable" data-title="Maktab binosi yon tomondan">
+          <img src="/assets/school-angle.jpg" alt="Maktab binosi yon tomoni">
+          <div class="gallery-caption"><span data-uz="O‘quv korpusi" data-ru="Учебный корпус">O‘quv korpusi</span></div>
+        </div>
+        <div class="gallery-item zoomable" data-title="Maktab pedagogik jamoasi">
+          <img src="/assets/teachers-all.png" alt="Pedagogik jamoa">
+          <div class="gallery-caption"><span data-uz="Pedagoglar jamoasi" data-ru="Педагогический коллектив">Pedagoglar jamoasi</span></div>
+        </div>
+        <div class="gallery-item zoomable" data-title="Ustoz ayollar jamoasi">
+          <img src="/assets/teachers-women.png" alt="Ustozlar jamoasi">
+          <div class="gallery-caption"><span data-uz="Ayol pedagoglar" data-ru="Учителя школы">Ayol pedagoglar</span></div>
+        </div>
+        <div class="gallery-item zoomable" data-title="Maktab o‘quvchilarining namunaviy kiyimi">
+          <img src="/assets/school-uniform.png" alt="Maktab formasi">
+          <div class="gallery-caption"><span data-uz="Maktab formasi" data-ru="Школьная форма">Maktab formasi</span></div>
+        </div>
+        <div class="gallery-item zoomable" data-title="Maktab rahbariyati umumiy fotosurati">
+          <img src="/assets/leadership-group.png" alt="Rahbariyat jamoasi">
+          <div class="gallery-caption"><span data-uz="Rahbariyat jamoasi" data-ru="Руководство">Rahbariyat jamoasi</span></div>
+        </div>
+        <div class="gallery-item zoomable" data-title="Maktab kirish darvozasi">
+          <img src="/assets/school-entry.jpg" alt="Maktab kirish darvozasi">
+          <div class="gallery-caption"><span data-uz="Asosiy kirish" data-ru="Главный вход">Asosiy kirish</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documents & Regulations -->
+  <section class="section-documents" id="documents">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-uz="HUJJATLAR" data-ru="ДОКУМЕНТЫ">HUJJATLAR</span>
+        <h2 class="section-title" data-uz="Rasmiy me’yoriy hujjatlar" data-ru="Официальные документы">Rasmiy me’yoriy hujjatlar</h2>
+        <p class="section-subtitle" data-uz="Maktab ustavi, qabul qoidalari va ichki tartib me’yorlari" data-ru="Устав школы, правила приёма и внутренний распорядок">Maktab ustavi, qabul qoidalari va ichki tartib me’yorlari</p>
+      </div>
+
+      <div class="documents-grid">
+        <div class="doc-card">
+          <div class="doc-icon">📄</div>
+          <div class="doc-details">
+            <h4 data-uz="Umumiy o‘rta ta’lim maktabi Ustavi" data-ru="Устав общеобразовательной школы">Umumiy o‘rta ta’lim maktabi Ustavi</h4>
+            <p data-uz="Maktab faoliyatining asosiy me’yoriy hujjati" data-ru="Основной нормативный документ школы">Maktab faoliyatining asosiy me’yoriy hujjati</p>
+            <span class="doc-meta">PDF · Rasmiy nusxa</span>
+          </div>
+          <a href="/assets/logo.png" download="Maktab_Ustavi.png" class="btn-doc-download" data-uz="Yuklab olish" data-ru="Скачать">Yuklab olish</a>
+        </div>
+
+        <div class="doc-card">
+          <div class="doc-icon">📋</div>
+          <div class="doc-details">
+            <h4 data-uz="1-sinfga qabul qilish tartibi va qoidalari" data-ru="Порядок и правила приёма в 1 класс">1-sinfga qabul qilish tartibi va qoidalari</h4>
+            <p data-uz="Hujjatlar ro‘yxati va ariza topshirish talablari" data-ru="Перечень документов и требования к заявлению">Hujjatlar ro‘yxati va ariza topshirish talablari</p>
+            <span class="doc-meta">PDF · 2026-yil</span>
+          </div>
+          <a href="/assets/logo.png" download="Qabul_Qoidalari.png" class="btn-doc-download" data-uz="Yuklab olish" data-ru="Скачать">Yuklab olish</a>
+        </div>
+
+        <div class="doc-card">
+          <div class="doc-icon">⚖️</div>
+          <div class="doc-details">
+            <h4 data-uz="Maktab ichki tartib-qoidalari" data-ru="Правила внутреннего распорядка">Maktab ichki tartib-qoidalari</h4>
+            <p data-uz="O‘quvchilar va xodimlar uchun odob-axloq me’yorlari" data-ru="Нормы этики для учащихся и сотрудников">O‘quvchilar va xodimlar uchun odob-axloq me’yorlari</p>
+            <span class="doc-meta">PDF · Me’yoriy hujjat</span>
+          </div>
+          <a href="/assets/logo.png" download="Ichki_Tartib_Qoidalar.png" class="btn-doc-download" data-uz="Yuklab olish" data-ru="Скачать">Yuklab olish</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Location Section -->
+  <section class="section-contact" id="contact">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag" data-uz="BOG‘LANISH" data-ru="КОНТАКТЫ">BOG‘LANISH</span>
+        <h2 class="section-title" data-uz="Biz bilan aloqa va joylashuv" data-ru="Контакты и расположение">Biz bilan aloqa va joylashuv</h2>
+        <p class="section-subtitle" data-uz="Maktab ma’muriyatiga savol yoki takliflaringizni yuboring" data-ru="Отправьте вопрос или предложение администрации школы">Maktab ma’muriyatiga savol yoki takliflaringizni yuboring</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Information Cards -->
+        <div class="contact-card info-card">
+          <h3 data-uz="Aloqa ma’lumotlari" data-ru="Контактные данные">Aloqa ma’lumotlari</h3>
+          
+          <div class="contact-item">
+            <div class="icon-circle">📍</div>
+            <div>
+              <strong data-uz="Manzil" data-ru="Адрес">Manzil</strong>
+              <p>Namangan viloyati, Yangiqo‘rg‘on tumani, Chortoq ko‘chasi, 36-uy, 161200</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="icon-circle">📞</div>
+            <div>
+              <strong data-uz="Telefon raqami" data-ru="Телефон">Telefon raqami</strong>
+              <p><a href="tel:+998945097171">+998 94 509 71 71</a> (Direktor)</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="icon-circle">✉️</div>
+            <div>
+              <strong data-uz="Elektron pochta" data-ru="Эл. почта">Elektron pochta</strong>
+              <p><a href="mailto:marifatlimaktab@umail.uz">marifatlimaktab@umail.uz</a></p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="icon-circle">💬</div>
+            <div>
+              <strong data-uz="Rasmiy Telegram kanali" data-ru="Официальный Telegram">Rasmiy Telegram kanali</strong>
+              <p><a href="https://t.me/+KQm8vZ8efHo1NWEy" target="_blank" rel="noopener">t.me/maktab45</a></p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="icon-circle">⏰</div>
+            <div>
+              <strong data-uz="Ish vaqti" data-ru="Часы работы">Ish vaqti</strong>
+              <p data-uz="Dushanba - Shanba: 08:00 - 18:00" data-ru="Понедельник - Суббота: 08:00 - 18:00">Dushanba - Shanba: 08:00 - 18:00</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Form -->
+        <div class="contact-card form-card">
+          <h3 data-uz="Maktabga murojaat yo‘llash" data-ru="Отправить обращение в школу">Maktabga murojaat yo‘llash</h3>
+          <p class="form-desc" data-uz="Ushbu forma orqali yuborilgan murojaatlar to‘g‘ridan-to‘g‘ri maktab rahbariyati ko‘rib chiqishiga yuboriladi." data-ru="Обращения через эту форму направляются напрямую руководству школы.">Ushbu forma orqali yuborilgan murojaatlar to‘g‘ridan-to‘g‘ri maktab rahbariyati ko‘rib chiqishiga yuboriladi.</p>
+          
+          <form id="contactForm" onsubmit="submitInquiry(event)">
+            <div class="form-group">
+              <label for="fullName" data-uz="F.I.SH." data-ru="Ф.И.О.">F.I.SH.</label>
+              <input type="text" id="fullName" required placeholder="Masalan: Abdullayev Anvar">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone" data-uz="Telefon raqami" data-ru="Номер телефона">Telefon raqami</label>
+                <input type="tel" id="phone" required placeholder="+998 90 123 45 67">
+              </div>
+              <div class="form-group">
+                <label for="email" data-uz="Email (ixtiyoriy)" data-ru="Email (необязательно)">Email (ixtiyoriy)</label>
+                <input type="email" id="email" placeholder="nomingiz@mail.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject" data-uz="Murojaat mavzusi" data-ru="Тема обращения">Murojaat mavzusi</label>
+              <input type="text" id="subject" placeholder="Masalan: To‘garakka yozilish yoki taklif">
+            </div>
+
+            <div class="form-group">
+              <label for="message" data-uz="Murojaat matni" data-ru="Текст обращения">Murojaat matni</label>
+              <textarea id="message" rows="4" required placeholder="Murojaatingizni batafsil yozing..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" id="btnSubmitInquiry">
+              <span data-uz="Murojaatni yuborish" data-ru="Отправить обращение">Murojaatni yuborish</span>
+            </button>
+            <div id="formStatusMsg" class="form-status"></div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Map Block -->
+      <div class="map-wrapper">
+        <div class="map-header">
+          <h4 data-uz="Maktab joylashuvi xaritada" data-ru="Школа на карте">Maktab joylashuvi xaritada</h4>
+          <a href="https://maps.app.goo.gl/pBTsCN5FNkgYGTSG7" target="_blank" rel="noopener" class="btn btn-sm btn-secondary" data-uz="Google Xaritalarda ochish" data-ru="Открыть в Google Картах">
+            Google Maps ↗
+          </a>
+        </div>
+        <div class="map-frame-box">
+          <iframe title="45-maktab xaritasi" src="https://www.google.com/maps?q=41.186256,71.7282842&z=17&output=embed" width="100%" height="340" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-content">
+      <div class="footer-col brand-col">
+        <div class="footer-logo">
+          <img src="/assets/logo.png" alt="45-maktab">
+          <div>
+            <h4>45-SONLI MAKTAB</h4>
+            <p data-uz="Yangiqo‘rg‘on tumani, Namangan viloyati" data-ru="Янгикурганский район, Наманганская область">Yangiqo‘rg‘on tumani, Namangan viloyati</p>
+          </div>
+        </div>
+        <p class="footer-desc" data-uz="45-sonli umumiy o‘rta ta’lim maktabining rasmiy axborot portali. Yangiliklar, fotomateriallar va hujjatlar muntazam yangilanadi." data-ru="Официальный информационный портал школы №45. Новости, фотоматериалы и документы регулярно обновляются.">
+          45-sonli umumiy o‘rta ta’lim maktabining rasmiy axborot portali. Yangiliklar, fotomateriallar va hujjatlar muntazam yangilanadi.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading" data-uz="Bo‘limlar" data-ru="Разделы">Bo‘limlar</h4>
+        <ul class="footer-links">
+          <li><a href="#about" data-uz="Maktab haqida" data-ru="О школе">Maktab haqida</a></li>
+          <li><a href="#leaders" data-uz="Rahbariyat" data-ru="Руководство">Rahbariyat</a></li>
+          <li><a href="#news" data-uz="Yangiliklar" data-ru="Новости">Yangiliklar</a></li>
+          <li><a href="#gallery" data-uz="Fotogalereya" data-ru="Фотогалерея">Fotogalereya</a></li>
+          <li><a href="#documents" data-uz="Hujjatlar" data-ru="Документы">Hujjatlar</a></li>
+          <li><a href="#contact" data-uz="Bog‘lanish" data-ru="Контакты">Bog‘lanish</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading" data-uz="Bog‘lanish" data-ru="Контакты">Bog‘lanish</h4>
+        <ul class="footer-contacts">
+          <li>📍 Yangiqo‘rg‘on t., Chortoq ko‘chasi, 36</li>
+          <li>📞 +998 94 509 71 71</li>
+          <li>✉️ marifatlimaktab@umail.uz</li>
+          <li>✈️ <a href="https://t.me/+KQm8vZ8efHo1NWEy" target="_blank" rel="noopener">Telegram kanali</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© 2026 45-sonli umumiy o‘rta ta’lim maktabi. <span data-uz="Barcha huquqlar himoyalangan." data-ru="Все права защищены.">Barcha huquqlar himoyalangan.</span></p>
+        <p><a href="/admin" class="footer-admin-link">Admin paneli</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Viewer Modal -->
+  <div class="lightbox-modal" id="lightboxModal" aria-hidden="true">
+    <button class="lightbox-btn-close" onclick="closeLightbox()" aria-label="Yopish">✕</button>
+    <button class="lightbox-btn-prev" onclick="stepLightbox(-1)" aria-label="Oldingi rasm">‹</button>
+    <div class="lightbox-body">
+      <img id="lightboxImage" src="" alt="Katta rasm">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+      <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+    </div>
+    <button class="lightbox-btn-next" onclick="stepLightbox(1)" aria-label="Keyingi rasm">›</button>
+  </div>
+
+  <!-- News Detail Modal -->
+  <div class="news-modal" id="newsModal" aria-hidden="true">
+    <div class="news-modal-content">
+      <button class="news-modal-close" onclick="closeNewsModal()">✕</button>
+      <div id="newsModalBody">
+        <!-- Rendered news detail -->
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "45-maktab-website",
+  "version": "2.0.0",
+  "description": "45-sonli umumiy o'rta ta'lim maktabi rasmiy portali",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "node server/test_routes.js"
+  },
+  "keywords": ["maktab", "education", "school-portal"],
+  "author": "45-maktab",
+  "license": "ISC"
+}

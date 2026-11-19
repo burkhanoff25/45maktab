@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | 45-sonli maktab</title>
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #f1f5f9;
+      min-height: 100vh;
+    }
+    .admin-navbar {
+      background: var(--primary-dark);
+      color: #fff;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .admin-brand img {
+      width: 36px;
+      height: 36px;
+    }
+    .admin-user-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.9rem;
+    }
+    .admin-container {
+      max-width: 1140px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    
+    /* Login Box */
+    .login-card {
+      max-width: 440px;
+      margin: 80px auto;
+      background: #fff;
+      padding: 36px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-light);
+      text-align: center;
+    }
+    .login-logo {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 16px;
+    }
+    .login-card h2 {
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+    .login-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    /* Dashboard */
+    .dashboard-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid var(--border-light);
+      padding-bottom: 12px;
+    }
+    .tab-btn {
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.92rem;
+      background: #fff;
+      border: 1px solid var(--border-dark);
+      cursor: pointer;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .admin-tab-content {
+      display: none;
+    }
+    .admin-tab-content.active {
+      display: block;
+    }
+
+    .admin-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      margin-bottom: 24px;
+    }
+
+    .admin-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .admin-card-header h3 {
+      font-size: 1.25rem;
+      color: var(--primary-dark);
+    }
+
+    /* Table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .data-table th, .data-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .data-table th {
+      background: var(--bg-main);
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+    .action-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-action-del {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .btn-action-del:hover {
+      background: #fecaca;
+    }
+
+    /* Image Preview */
+    .preview-box {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .preview-thumb {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border-light);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ADMIN NAVBAR -->
+  <nav class="admin-navbar">
+    <div class="admin-brand">
+      <img src="/assets/logo.png" alt="45-maktab">
+      <span>45-MAKTAB · BOSHQARUV PANELI</span>
+    </div>
+    <div class="admin-user-info" id="adminUserArea" style="display: none;">
+      <span>Administrator: <strong id="adminUsername">admin</strong></span>
+      <a href="/" target="_blank" class="btn btn-secondary btn-sm">Saytni ko‘rish ↗</a>
+      <button class="btn btn-sm btn-outline" onclick="logoutAdmin()">Chiqish</button>
+    </div>
+  </nav>
+
+  <div class="admin-container">
+    
+    <!-- LOGIN VIEW -->
+    <div id="loginView" class="login-card">
+      <img src="/assets/logo.png" alt="Logo" class="login-logo">
+      <h2>Xavfsiz Kirish</h2>
+      <p>45-sonli maktab rasmiy boshqaruv paneli</p>
+
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group" style="text-align: left;">
+          <label>Foydalanuvchi nomi</label>
+          <input type="text" id="adminLoginUser" required placeholder="admin" value="admin">
+        </div>
+        <div class="form-group" style="text-align: left;">
+          <label>Xavfsiz parol</label>
+          <input type="password" id="adminLoginPass" required placeholder="Parolni kiriting">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="btnLogin">Tizimga kirish</button>
+        <div id="loginError" class="form-status error" style="margin-top: 15px;"></div>
+      </form>
+    </div>
+
+    <!-- MAIN DASHBOARD -->
+    <div id="dashboardView" style="display: none;">
+      
+      <!-- TABS -->
+      <div class="dashboard-tabs">
+        <button class="tab-btn active" onclick="switchTab('tabNews')">📰 Yangiliklar</button>
+        <button class="tab-btn" onclick="switchTab('tabAnnouncements')">📢 E’lonlar</button>
+        <button class="tab-btn" onclick="switchTab('tabInquiries')">📩 Kelgan murojaatlar</button>
+        <button class="tab-btn" onclick="switchTab('tabSettings')">⚙️ Xavfsizlik & Parol</button>
+      </div>
+
+      <!-- TAB 1: NEWS -->
+      <div id="tabNews" class="admin-tab-content active">
+        <!-- New News Form -->
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3>Yangi maqola / yangilik qo‘shish</h3>
+          </div>
+          <form id="newsForm" onsubmit="handleCreateNews(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Sarlavha (O‘zbekcha) *</label>
+                <input type="text" id="newsTitleUz" required placeholder="Masalan: Maktabimizda kitobxonlik haftaligi o‘tkazildi">
+              </div>
+              <div class="form-group">
+                <label>Заголовок (Русский) *</label>
+                <input type="text" id="newsTitleRu" required placeholder="Например: В школе прошла неделя чтения">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Kategoriya</label>
+                <select id="newsCategory">
+                  <option value="Ta’lim">Ta’lim</option>
+                  <option value="Tadbirlar">Tadbirlar</option>
+                  <option value="Yutuqlar">Yutuqlar</option>
+                  <option value="Sport">Sport</option>
+                  <option value="To‘garaklar">To‘garaklar</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Sana</label>
+                <input type="text" id="newsDate" placeholder="Masalan: 18.11.2026">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Matn (O‘zbekcha) *</label>
+                <textarea id="newsBodyUz" rows="5" required placeholder="Yangilik matnini to‘liq kiriting..."></textarea>
+              </div>
+              <div class="form-group">
+                <label>Текст (Русский) *</label>
+                <textarea id="newsBodyRu" rows="5" required placeholder="Введите текст новости на русском языке..."></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Suratlar (Bir nechta rasm tanlashingiz mumkin)</label>
+              <input type="file" id="newsPhotos" accept="image/*" multiple onchange="previewSelectedImages(event)">
+              <div id="imagePreviewContainer" class="preview-box"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btnPublishNews">E’lon qilish</button>
+            <span id="newsStatusMsg" style="margin-left: 15px; font-weight: 600;"></span>
+          </form>
+        </div>
+
+        <!-- News Table -->
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3>Mavjud yangiliklar ro‘yxati</h3>
+            <button class="btn btn-sm btn-secondary" onclick="fetchAdminNews()">Yangilash</button>
+          </div>
+          <div style="overflow-x: auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Rasm</th>
+                  <th>Sarlavha (UZ)</th>
+                  <th>Kategoriya</th>
+                  <th>Sana</th>
+                  <th>Ko‘rishlar</th>
+                  <th>Amal</th>
+                </tr>
+              </thead>
+              <tbody id="newsTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: ANNOUNCEMENTS -->
+      <div id="tabAnnouncements" class="admin-tab-content">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3>Yangi e’lon qo‘shish</h3>
+          </div>
+          <form onsubmit="handleCreateAnnouncement(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>E’lon sarlavhasi (UZ) *</label>
+                <input type="text" id="annTitleUz" required placeholder="Masalan: Ota-onalar majlisi">
+              </div>
+              <div class="form-group">
+                <label>Заголовок объявления (RU) *</label>
+                <input type="text" id="annTitleRu" required placeholder="Например: Родительское собрание">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Sana / Vaqt</label>
+                <input type="text" id="annDate" placeholder="2026-11-25 yoki Soat 10:00">
+              </div>
+              <div class="form-group" style="display: flex; align-items: center; gap: 10px; padding-top: 25px;">
+                <input type="checkbox" id="annUrgent" style="width: auto;">
+                <label for="annUrgent" style="margin: 0; cursor: pointer; color: #b45309; font-weight: 700;">⚠️ Shoshilinch e’lon sifatida belgilash</label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>E’lon matni (UZ) *</label>
+                <textarea id="annContentUz" rows="3" required placeholder="E’lon tafsilotlari..."></textarea>
+              </div>
+              <div class="form-group">
+                <label>Текст объявления (RU) *</label>
+                <textarea id="annContentRu" rows="3" required placeholder="Подробности объявления..."></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">E’lonni joylashtirish</button>
+            <span id="annStatusMsg" style="margin-left: 15px; font-weight: 600;"></span>
+          </form>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3>E’lonlar ro‘yxati</h3>
+            <button class="btn btn-sm btn-secondary" onclick="fetchAdminAnnouncements()">Yangilash</button>
+          </div>
+          <div style="overflow-x: auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Holat</th>
+                  <th>Sarlavha (UZ)</th>
+                  <th>Sana</th>
+                  <th>Amal</th>
+                </tr>
+              </thead>
+              <tbody id="annTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: INQUIRIES -->
+      <div id="tabInquiries" class="admin-tab-content">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3>Foydalanuvchilardan kelgan murojaatlar</h3>
+            <button class="btn btn-sm btn-secondary" onclick="fetchAdminInquiries()">Yangilash</button>
+          </div>
+          <div style="overflow-x: auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Yuboruvchi F.I.SH.</th>
+                  <th>Telefon</th>
+                  <th>Email</th>
+                  <th>Mavzu</th>
+                  <th>Xabar matni</th>
+                  <th>Sana</th>
+                </tr>
+              </thead>
+              <tbody id="inquiriesTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: SETTINGS & PASSWORD -->
+      <div id="tabSettings" class="admin-tab-content">
+        <div class="admin-card" style="max-width: 500px;">
+          <div class="admin-card-header">
+            <h3>Administrator parolini o‘zgartirish</h3>
+          </div>
+          <form onsubmit="handleChangePassword(event)">
+            <div class="form-group">
+              <label>Hozirgi amaldagi parol</label>
+              <input type="password" id="oldPassword" required placeholder="Eski parol">
+            </div>
+            <div class="form-group">
+              <label>Yangi xavfsiz parol</label>
+              <input type="password" id="newPassword" required placeholder="Kamida 6 belgi">
+            </div>
+            <div class="form-group">
+              <label>Yangi parolni takrorlang</label>
+              <input type="password" id="confirmPassword" required placeholder="Yangi parolni qayta tering">
+            </div>
+            <button type="submit" class="btn btn-primary">Parolni yangilash</button>
+            <div id="pwdStatusMsg" class="form-status" style="text-align: left; margin-top: 10px;"></div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    let authToken = localStorage.getItem('school45_admin_token') || null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (authToken) {
+        checkAuth();
+      }
+    });
+
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/auth/me', {
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+        const data = await res.json();
+        if (data.success) {
+          showDashboard(data.user);
+        } else {
+          logoutAdmin();
+        }
+      } catch (err) {
+        logoutAdmin();
+      }
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById('adminLoginUser').value.trim();
+      const pass = document.getElementById('adminLoginPass').value.trim();
+      const errBox = document.getElementById('loginError');
+      const btn = document.getElementById('btnLogin');
+
+      btn.disabled = true;
+      errBox.textContent = '';
+
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: user, password: pass })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          authToken = data.token;
+          localStorage.setItem('school45_admin_token', authToken);
+          showDashboard(data.user);
+        } else {
+          errBox.textContent = data.error || 'Login yoki parol noto‘g‘ri';
+        }
+      } catch (err) {
+        errBox.textContent = 'Server bilan aloqa uzildi';
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function showDashboard(user) {
+      document.getElementById('loginView').style.display = 'none';
+      document.getElementById('dashboardView').style.display = 'block';
+      document.getElementById('adminUserArea').style.display = 'flex';
+      document.getElementById('adminUsername').textContent = user.username || 'admin';
+      fetchAdminNews();
+      fetchAdminAnnouncements();
+      fetchAdminInquiries();
+    }
+
+    function logoutAdmin() {
+      authToken = null;
+      localStorage.removeItem('school45_admin_token');
+      document.getElementById('loginView').style.display = 'block';
+      document.getElementById('dashboardView').style.display = 'none';
+      document.getElementById('adminUserArea').style.display = 'none';
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    // IMAGE PREVIEW
+    function previewSelectedImages(event) {
+      const box = document.getElementById('imagePreviewContainer');
+      box.innerHTML = '';
+      const files = event.target.files;
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.className = 'preview-thumb';
+          box.appendChild(img);
+        };
+        reader.readAsDataURL(files[i]);
+      }
+    }
+
+    // CREATE NEWS
+    async function handleCreateNews(e) {
+      e.preventDefault();
+      const status = document.getElementById('newsStatusMsg');
+      const btn = document.getElementById('btnPublishNews');
+      status.style.color = 'var(--text-main)';
+      status.textContent = 'Yuklanmoqda...';
+      btn.disabled = true;
+
+      const formData = new FormData();
+      formData.append('title_uz', document.getElementById('newsTitleUz').value.trim());
+      formData.append('title_ru', document.getElementById('newsTitleRu').value.trim());
+      formData.append('category', document.getElementById('newsCategory').value);
+      formData.append('date', document.getElementById('newsDate').value.trim() || new Date().toLocaleDateString('uz-UZ'));
+      formData.append('body_uz', document.getElementById('newsBodyUz').value.trim());
+      formData.append('body_ru', document.getElementById('newsBodyRu').value.trim());
+
+      const files = document.getElementById('newsPhotos').files;
+      for (let i = 0; i < files.length; i++) {
+        formData.append('photos', files[i]);
+      }
+
+      try {
+        const res = await fetch('/api/news', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${authToken}` },
+          body: formData
+        });
+        const data = await res.json();
+        if (data.success) {
+          status.style.color = '#15803d';
+          status.textContent = '✅ Yangilik muvaffaqiyatli chop etildi!';
+          document.getElementById('newsForm').reset();
+          document.getElementById('imagePreviewContainer').innerHTML = '';
+          fetchAdminNews();
+        } else {
+          status.style.color = '#b91c1c';
+          status.textContent = '❌ ' + (data.error || 'Xatolik yuz berdi');
+        }
+      } catch (err) {
+        status.style.color = '#b91c1c';
+        status.textContent = '❌ Server xatosi';
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    // FETCH ADMIN NEWS
+    async function fetchAdminNews() {
+      try {
+        const res = await fetch('/api/news');
+        const json = await res.json();
+        const tbody = document.getElementById('newsTableBody');
+        if (json.success && json.data) {
+          tbody.innerHTML = json.data.map(n => {
+            const thumb = (n.images && n.images.length > 0) ? n.images[0] : '/assets/school-front-1.jpg';
+            return `
+              <tr>
+                <td>${n.id}</td>
+                <td><img src="${thumb}" style="width:45px;height:45px;object-fit:cover;border-radius:4px;"></td>
+                <td><strong>${escapeHtml(n.title_uz)}</strong></td>
+                <td><span style="background:var(--primary-light);padding:3px 8px;border-radius:4px;">${escapeHtml(n.category)}</span></td>
+                <td>${escapeHtml(n.date)}</td>
+                <td>${n.views || 0}</td>
+                <td>
+                  <button class="btn-action-del" onclick="deleteNews(${n.id})">O‘chirish</button>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function deleteNews(id) {
+      if (!confirm('Haqiqatan ham bu yangilikni o‘chirmoqchimisiz?')) return;
+      try {
+        const res = await fetch(`/api/news/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+        const data = await res.json();
+        if (data.success) {
+          fetchAdminNews();
+        } else {
+          alert(data.error);
+        }
+      } catch (err) {
+        alert('O‘chirishda xatolik');
+      }
+    }
+
+    // ANNOUNCEMENTS
+    async function handleCreateAnnouncement(e) {
+      e.preventDefault();
+      const status = document.getElementById('annStatusMsg');
+      const body = {
+        title_uz: document.getElementById('annTitleUz').value.trim(),
+        title_ru: document.getElementById('annTitleRu').value.trim(),
+        content_uz: document.getElementById('annContentUz').value.trim(),
+        content_ru: document.getElementById('annContentRu').value.trim(),
+        event_date: document.getElementById('annDate').value.trim(),
+        is_urgent: document.getElementById('annUrgent').checked
+      };
+
+      try {
+        const res = await fetch('/api/announcements', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+          },
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (data.success) {
+          status.style.color = '#15803d';
+          status.textContent = '✅ E’lon chop etildi!';
+          fetchAdminAnnouncements();
+        }
+      } catch (err) {
+        status.style.color = '#b91c1c';
+        status.textContent = '❌ Xatolik yuz berdi';
+      }
+    }
+
+    async function fetchAdminAnnouncements() {
+      try {
+        const res = await fetch('/api/announcements');
+        const json = await res.json();
+        const tbody = document.getElementById('annTableBody');
+        if (json.success && json.data) {
+          tbody.innerHTML = json.data.map(a => `
+            <tr>
+              <td>${a.id}</td>
+              <td>${a.is_urgent ? '<span style="color:#b45309;font-weight:bold;">⚠️ Shoshilinch</span>' : 'Oddiy'}</td>
+              <td><strong>${escapeHtml(a.title_uz)}</strong></td>
+              <td>${escapeHtml(a.event_date || '—')}</td>
+              <td>
+                <button class="btn-action-del" onclick="deleteAnnouncement(${a.id})">O‘chirish</button>
+              </td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function deleteAnnouncement(id) {
+      if (!confirm('E’lonni o‘chirmoqchimisiz?')) return;
+      try {
+        const res = await fetch(`/api/announcements/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+        const data = await res.json();
+        if (data.success) fetchAdminAnnouncements();
+      } catch (e) {
+        alert('Xatolik');
+      }
+    }
+
+    // INQUIRIES
+    async function fetchAdminInquiries() {
+      try {
+        const res = await fetch('/api/inquiries', {
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+        const json = await res.json();
+        const tbody = document.getElementById('inquiriesTableBody');
+        if (json.success && json.data) {
+          tbody.innerHTML = json.data.map(m => `
+            <tr>
+              <td>${m.id}</td>
+              <td><strong>${escapeHtml(m.full_name)}</strong></td>
+              <td><a href="tel:${escapeHtml(m.phone)}">${escapeHtml(m.phone)}</a></td>
+              <td>${escapeHtml(m.email || '—')}</td>
+              <td>${escapeHtml(m.subject || '—')}</td>
+              <td><p style="max-width:300px;font-size:0.85rem;">${escapeHtml(m.message)}</p></td>
+              <td><small>${escapeHtml(m.created_at)}</small></td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    // CHANGE PASSWORD
+    async function handleChangePassword(e) {
+      e.preventDefault();
+      const oldPass = document.getElementById('oldPassword').value;
+      const newPass = document.getElementById('newPassword').value;
+      const confirmPass = document.getElementById('confirmPassword').value;
+      const status = document.getElementById('pwdStatusMsg');
+
+      if (newPass !== confirmPass) {
+        status.className = 'form-status error';
+        status.textContent = 'Yangi parollar mos kelmadi';
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/admin/change-password', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+          },
+          body: JSON.stringify({ oldPassword: oldPass, newPassword: newPass })
+        });
+        const data = await res.json();
+        if (data.success) {
+          status.className = 'form-status success';
+          status.textContent = '✅ Parol muvaffaqiyatli o‘zgartirildi!';
+        } else {
+          status.className = 'form-status error';
+          status.textContent = '❌ ' + (data.error || 'Xatolik');
+        }
+      } catch (err) {
+        status.className = 'form-status error';
+        status.textContent = 'Server xatosi';
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+  </script>
+</body>
+</html>
