@@ -35,13 +35,21 @@ export function verifyPassword(password: string, storedHash: string): boolean {
   return crypto.timingSafeEqual(Buffer.from(verifyHash, 'hex'), Buffer.from(originalHash, 'hex'));
 }
 
+// In-memory store for serverless/edge environments
+const serverlessMemoryStore = {
+  inquiries: [] as any[],
+  stats: { total_students: 1056, girls: 438, boys: 618, teachers: 49 },
+  news: [] as any[],
+  announcements: [] as any[],
+};
+
 export const db = {
   prepare: (sql: string) => {
     const realDb = getDb();
     if (realDb) {
       return realDb.prepare(sql);
     }
-    // Fallback in-memory mock for serverless environments (Vercel)
+    // Fallback in-memory store for serverless environments (Vercel)
     return {
       get: (...args: any[]) => {
         if (sql.includes('users')) {
@@ -54,17 +62,47 @@ export const db = {
           };
         }
         if (sql.includes('stats')) {
-          return { total_students: 1056, girls: 438, boys: 618, teachers: 49 };
+          return serverlessMemoryStore.stats;
         }
         return null;
       },
       all: (...args: any[]) => {
+        if (sql.includes('contacts_inquiries')) {
+          return serverlessMemoryStore.inquiries;
+        }
         if (sql.includes('stats')) {
-          return [{ total_students: 1056, girls: 438, boys: 618, teachers: 49 }];
+          return [serverlessMemoryStore.stats];
+        }
+        if (sql.includes('news')) {
+          return serverlessMemoryStore.news;
+        }
+        if (sql.includes('announcements')) {
+          return serverlessMemoryStore.announcements;
         }
         return [];
       },
-      run: (...args: any[]) => ({ lastInsertRowid: 1 })
+      run: (...args: any[]) => {
+        if (sql.includes('contacts_inquiries')) {
+          const [full_name, phone, email, subject, message] = args;
+          const newInquiry = {
+            id: serverlessMemoryStore.inquiries.length + 1,
+            full_name,
+            phone,
+            email,
+            subject,
+            message,
+            created_at: new Date().toLocaleString('uz-UZ'),
+          };
+          serverlessMemoryStore.inquiries.unshift(newInquiry);
+          return { lastInsertRowid: newInquiry.id };
+        }
+        if (sql.includes('stats')) {
+          const [total_students, girls, boys, teachers] = args;
+          serverlessMemoryStore.stats = { total_students, girls, boys, teachers };
+          return { lastInsertRowid: 1 };
+        }
+        return { lastInsertRowid: 1 };
+      }
     };
   }
 };

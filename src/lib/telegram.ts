@@ -3,7 +3,7 @@ import https from 'node:https';
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '9217947885:AAGWbMcZlyDEwP7DJ8UGqstO_XDM5eOWYqc';
 const TELEGRAM_ADMINS = (process.env.TELEGRAM_ADMINS
   ? process.env.TELEGRAM_ADMINS.split(',')
-  : ['76813895', '1426434654', '7918236863']
+  : ['76813895', '1426434654', '7918236863', '8972749595']
 ).map(s => s.trim()).filter(Boolean);
 
 export function escapeHtml(str: string): string {
