@@ -1,4 +1,5 @@
 const http = require('node:http');
+const https = require('node:https');
 const fs = require('node:fs');
 const path = require('node:path');
 const url = require('node:url');
@@ -8,6 +9,59 @@ const { db, hashPassword, verifyPassword } = require('./database');
 const PORT = process.env.PORT || 3000;
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 const UPLOADS_DIR = path.join(PUBLIC_DIR, 'uploads');
+
+// Telegram Bot Configuration
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "9217947885:AAGWbMcZlyDEwP7DJ8UGqstO_XDM5eOWYqc";
+const TELEGRAM_ADMINS = (process.env.TELEGRAM_ADMINS ? process.env.TELEGRAM_ADMINS.split(',') : ["76813895", "1426434654", "7918236863"]).map(s => s.trim());
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Helper to send message to Telegram Admins
+function notifyTelegramAdmins(messageText) {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_ADMINS.length) return;
+
+  TELEGRAM_ADMINS.forEach(chatId => {
+    const postData = JSON.stringify({
+      chat_id: chatId,
+      text: messageText,
+      parse_mode: 'HTML'
+    });
+
+    const req = https.request({
+      hostname: 'api.telegram.org',
+      port: 443,
+      path: `/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(postData)
+      }
+    }, res => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        if (res.statusCode !== 200) {
+          console.warn(`[Telegram] Send failed for admin ${chatId}:`, data);
+        }
+      });
+    });
+
+    req.on('error', err => {
+      console.warn(`[Telegram Error for ${chatId}]:`, err.message);
+    });
+
+    req.write(postData);
+    req.end();
+  });
+}
 
 if (!fs.existsSync(UPLOADS_DIR)) {
   fs.mkdirSync(UPLOADS_DIR, { recursive: true });
@@ -347,6 +401,15 @@ const server = http.createServer(async (req, res) => {
         VALUES (?, ?, ?, ?, ?, ?)
       `);
       const info = stmt.run(title_uz, title_ru || title_uz, content_uz, content_ru || content_uz, event_date || '', is_urgent ? 1 : 0);
+      
+      // Notify Telegram admins about new announcement
+      const urgentBadge = is_urgent ? '⚠️ <b>SHOSHILINCH E‘LON!</b>\n' : '📢 <b>YANGI E‘LON!</b>\n';
+      const tgMsg = `${urgentBadge}<b>Sarlavha:</b> ${escapeHtml(title_uz)}\n` +
+        (event_date ? `<b>Sana:</b> ${escapeHtml(event_date)}\n` : '') +
+        `<b>Batafsil:</b> ${escapeHtml(content_uz)}\n\n` +
+        `<i>45-maktab rasmiy sayti</i>`;
+      notifyTelegramAdmins(tgMsg);
+
       return sendJson(res, 201, { success: true, id: Number(info.lastInsertRowid) });
     } catch (e) {
       return sendError(res, 500, e.message);
@@ -380,6 +443,18 @@ const server = http.createServer(async (req, res) => {
         VALUES (?, ?, ?, ?, ?)
       `);
       stmt.run(full_name, phone, email || '', subject || 'Sayt orqali murojaat', message);
+
+      // Send Instant Notification to Telegram Admins
+      const tgMsg = `📩 <b>YANGI MUROJAAT (Sayt orqali)</b>\n\n` +
+        `👤 <b>F.I.SH.:</b> ${escapeHtml(full_name)}\n` +
+        `📞 <b>Telefon:</b> <a href="tel:${escapeHtml(phone)}">${escapeHtml(phone)}</a>\n` +
+        (email ? `✉️ <b>Email:</b> ${escapeHtml(email)}\n` : '') +
+        (subject ? `📌 <b>Mavzu:</b> ${escapeHtml(subject)}\n` : '') +
+        `\n💬 <b>Murojaat matni:</b>\n${escapeHtml(message)}\n\n` +
+        `📅 <i>Sana: ${new Date().toLocaleString('uz-UZ')}</i>\n` +
+        `🏫 <i>45-sonli maktab rasmiy portali</i>`;
+      notifyTelegramAdmins(tgMsg);
+
       return sendJson(res, 201, {
         success: true,
         message: 'Murojaatingiz qabul qilindi. Tez orada siz bilan bog‘lanamiz.'

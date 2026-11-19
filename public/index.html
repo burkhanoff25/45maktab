@@ -174,7 +174,21 @@
         </div>
       </div>
       <div class="announcements-container" id="announcementsList">
-        <!-- Rendered via JS -->
+        <div class="announcement-item urgent">
+          <div class="ann-content">
+            <span class="ann-badge">⚠️ Shoshilinch</span>
+            <h4>Ota-onalar umumiy majlisi o‘tkaziladi</h4>
+            <p>Joriy haftaning shanba kuni soat 10:00 da maktab faollar zalida ota-onalar bilan ochiq muloqot va chorak yakunlari muhokamasi bo‘lib o‘tadi.</p>
+          </div>
+          <div class="ann-date">📅 2026-11-21</div>
+        </div>
+        <div class="announcement-item">
+          <div class="ann-content">
+            <h4>Fan to‘garaklariga yangi qabul</h4>
+            <p>Matematika, rus tili, xorijiy tillar va robototexnika to‘garaklariga qo‘shimcha qabul boshlandi. Qatnashish istagida bo‘lgan o‘quvchilar sinf rahbarlariga murojaat qilishlari mumkin.</p>
+          </div>
+          <div class="ann-date">📅 2026-11-25</div>
+        </div>
       </div>
     </div>
   </section>
@@ -236,7 +250,36 @@
       </div>
 
       <div class="leaders-grid" id="leadersList">
-        <!-- Rendered via API / Static fallback -->
+        <div class="leader-card">
+          <img src="/assets/director.jpg" alt="Ravshanbek Mamajonov Raxmonjonovich" class="leader-avatar zoomable" data-title="Ravshanbek Mamajonov Raxmonjonovich">
+          <h3>Ravshanbek Mamajonov Raxmonjonovich</h3>
+          <span class="leader-position" data-uz="Maktab direktori" data-ru="Директор школы">Maktab direktori</span>
+          <div class="leader-meta">
+            <span>📞 +998 94 509 71 71</span>
+            <span>✉️ marifatlimaktab@umail.uz</span>
+            <span data-uz="🕒 Dushanba - Juma: 09:00 - 12:00" data-ru="🕒 Понедельник - Пятница: 09:00 - 12:00">🕒 Dushanba - Juma: 09:00 - 12:00</span>
+          </div>
+        </div>
+        <div class="leader-card">
+          <img src="/assets/oibdo.jpg" alt="Pulatov Jaxongir Odilovich" class="leader-avatar zoomable" data-title="Pulatov Jaxongir Odilovich">
+          <h3>Pulatov Jaxongir Odilovich</h3>
+          <span class="leader-position" data-uz="O‘quv ishlari bo‘yicha direktor o‘rinbosari (O‘IBDO‘)" data-ru="Заместитель директора по учебной работе (УИБДО)">O‘quv ishlari bo‘yicha direktor o‘rinbosari (O‘IBDO‘)</span>
+          <div class="leader-meta">
+            <span>📞 +998 94 509 71 71</span>
+            <span>✉️ marifatlimaktab@umail.uz</span>
+            <span data-uz="🕒 Seshanba, Payshanba: 14:00 - 17:00" data-ru="🕒 Вторник, Четверг: 14:00 - 17:00">🕒 Seshanba, Payshanba: 14:00 - 17:00</span>
+          </div>
+        </div>
+        <div class="leader-card">
+          <img src="/assets/mmibdo.png" alt="Nabijonov Diyorbek Umarovich" class="leader-avatar zoomable" data-title="Nabijonov Diyorbek Umarovich">
+          <h3>Nabijonov Diyorbek Umarovich</h3>
+          <span class="leader-position" data-uz="Ma’naviy-ma’rifiy ishlar bo‘yicha direktor o‘rinbosari (MMIBDO‘)" data-ru="Заместитель директора по духовно-просветительской работе (ММИБДО)">Ma’naviy-ma’rifiy ishlar bo‘yicha direktor o‘rinbosari (MMIBDO‘)</span>
+          <div class="leader-meta">
+            <span>📞 +998 94 509 71 71</span>
+            <span>✉️ marifatlimaktab@umail.uz</span>
+            <span data-uz="🕒 Chorshanba, Shanba: 10:00 - 13:00" data-ru="🕒 Среда, Суббота: 10:00 - 13:00">🕒 Chorshanba, Shanba: 10:00 - 13:00</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -256,7 +299,40 @@
       </div>
 
       <div class="news-grid" id="newsGrid">
-        <!-- Dynamically loaded from SQLite Backend API -->
+        <article class="news-card">
+          <div class="news-cover">
+            <img src="/assets/school-front-1.jpg" alt="45-maktabda yangi o‘quv yili" loading="lazy">
+            <span class="news-badge-cat">Ta’lim</span>
+          </div>
+          <div class="news-body">
+            <div class="news-meta">
+              <span>📅 18.11.2026</span>
+              <span>👁️ 1</span>
+            </div>
+            <h3>45-maktabda yangi o‘quv yili muvaffaqiyatli davom etmoqda</h3>
+            <p class="news-excerpt">Namangan viloyati Yangiqo‘rg‘on tumanidagi 45-sonli umumiy o‘rta ta’lim maktabida zamonaviy ta’lim standartlari asosida o‘quv jarayonlari qizg‘in davom etmoqda. Maktabda 1056 nafar o‘quvchi ta’lim olib, ularga 49 nafar malakali pedagog ustozlar saboq berishmoqda.</p>
+            <div class="news-footer">
+              <button class="btn-read-more" onclick="openNewsDetail(1)">Batafsil o‘qish →</button>
+            </div>
+          </div>
+        </article>
+        <article class="news-card">
+          <div class="news-cover">
+            <img src="/assets/teachers-all.png" alt="Iqtidorli o‘quvchilar fan olimpiadalariga tayyorgarlik ko‘rmoqda" loading="lazy">
+            <span class="news-badge-cat">Yutuqlar</span>
+          </div>
+          <div class="news-body">
+            <div class="news-meta">
+              <span>📅 15.11.2026</span>
+              <span>👁️ 1</span>
+            </div>
+            <h3>Iqtidorli o‘quvchilar fan olimpiadalariga tayyorgarlik ko‘rmoqda</h3>
+            <p class="news-excerpt">Maktabimizda aniq va ijtimoiy-gumanitar fanlar yo‘nalishida to‘garaklar faoliyati namunali yo‘lga qo‘yilgan. O‘quvchilarimiz tuman va viloyat miqyosidagi olimpiadalarda munosib ishtirok etish uchun muntazam darsdan tashqari mashg‘ulotlarda qatnashmoqdalar.</p>
+            <div class="news-footer">
+              <button class="btn-read-more" onclick="openNewsDetail(2)">Batafsil o‘qish →</button>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
